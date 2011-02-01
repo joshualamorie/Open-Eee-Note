@@ -1,0 +1,12 @@
+BUILD REQUIREMENTS:
+1. ARM toolchain must be installed and the relevant commands such as arm-linux-gcc should be available.
+2. Following libraries and the relevant headers should be available:
+	libglib-2.0.so, libiconv.so, libz.so, libts.so, libsqlite3.so, libQtGui.so
+3. You may need to modify CMakeList.txt file inside the source code according to where you put above libraries and headers.
+
+BUILD PROCESS:
+Suppose ${SRC} is the root of the source code.
+1. cd ${SRC}
+2. mkdir -p build/
+3. cmake ..
+4. make

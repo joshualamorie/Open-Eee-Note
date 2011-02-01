@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/dictionaryCombobox_d.png</file>
+        <file>images/dictionaryCombobox_dis.png</file>
+        <file>images/dictionaryCombobox_n.png</file>
+        <file>images/dictionaryCombobox_o.png</file>
+        <file>images/s_del_d.png</file>
+        <file>images/s_del_dis.png</file>
+        <file>images/s_del_n.png</file>
+        <file>images/s_del_o.png</file>
+        <file>images/search_edit.png</file>
+        <file>images/s_del_mousedown.png</file>
+        <file>images/s_del_mouseover.png</file>
+        <file>images/s_del_normal.png</file>
+        <file>images/r_dictionary_bk.png</file>
+        <file>images/v_highlight.png</file>
+    </qresource>
+</RCC>

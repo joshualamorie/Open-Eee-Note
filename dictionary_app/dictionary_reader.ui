@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>readerDialog</class>
+ <widget class="QDialog" name="readerDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>265</width>
+    <height>253</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>265</width>
+    <height>253</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>265</width>
+    <height>253</height>
+   </size>
+  </property>
+  <property name="font">
+   <font>
+    <family>Bitstream Vera Sans</family>
+    <pointsize>14</pointsize>
+   </font>
+  </property>
+  <property name="focusPolicy">
+   <enum>Qt::NoFocus</enum>
+  </property>
+  <property name="windowTitle">
+   <string/>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-image:url(:/images/r_dictionary_bk.png) ;
+border:none;</string>
+  </property>
+  <widget class="QPushButton" name="closeReaderDictButton">
+   <property name="geometry">
+    <rect>
+     <x>241</x>
+     <y>10</y>
+     <width>15</width>
+     <height>15</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>15</width>
+     <height>15</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>15</width>
+     <height>15</height>
+    </size>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+border: none;
+background-color:white;
+background-image:url(:/images/s_del_normal.png);
+}
+QPushButton:hover{
+border: none;
+background-image:url(:/images/s_del_mouseover.png);
+}
+QPushButton:pressed{
+border: none;
+background-image:url(:/images/s_del_mousedown.png);
+}</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="toDictionaryButton">
+   <property name="geometry">
+    <rect>
+     <x>190</x>
+     <y>215</y>
+     <width>71</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+border: none;
+background-color:white;
+}
+QPushButton:hover{
+border: none;
+background-color:white;
+}
+QPushButton:pressed{
+border: none;
+background-color:white;
+}</string>
+   </property>
+   <property name="text">
+    <string>more</string>
+   </property>
+   <property name="autoRepeatDelay">
+    <number>0</number>
+   </property>
+   <property name="autoRepeatInterval">
+    <number>0</number>
+   </property>
+   <property name="autoDefault">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="wordLabel">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>25</y>
+     <width>240</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>240</width>
+     <height>25</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>240</width>
+     <height>25</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color:white;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
