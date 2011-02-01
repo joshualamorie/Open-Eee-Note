@@ -1,0 +1,13 @@
+Open Eee Note
+-------------
+
+Software Development Kit and user utilites for use with ASUS Eee Note
+
+
+Contents:
+---------
+
+dvt_check/
+	- A collection of scripts that use the /mnt/extsdcard/dvt_check trick
+    in order to get code onto the Eee Note.
+

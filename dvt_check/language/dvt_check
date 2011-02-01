@@ -1,0 +1,6 @@
+#!/bin/sh
+
+echo "Convert to English interface..."
+sed -e 's/default=tc/default=en/' /eTablet/etc/setting/sys.config > /mnt/extsdcard/sys.config
+cp /mnt/extsdcard/sys.config /eTablet/etc/setting/
+
