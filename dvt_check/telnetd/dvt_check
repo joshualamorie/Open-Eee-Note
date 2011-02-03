@@ -1,0 +1,6 @@
+#!/bin/sh
+
+/usr/sbin/telnetd &
+
+mv dvt_check dvt_checked
+

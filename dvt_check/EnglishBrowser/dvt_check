@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# remount the /usr partition
+/usr/local/eTablet/remount.sh 2>>err.txt
+
+echo "Rename Browser translation files.."
+mv /usr/local/eTablet/bin/browser/translations/etablet_zh.qm /usr/local/eTablet/bin/browser/translations/etablet_zh.qm_ 2>>err.txt
+mv /usr/local/eTablet/bin/browser/translations/etablet_zh.ts /usr/local/eTablet/bin/browser/translations/etablet_zh.ts_ 2>>err.txt
+
+# rename dvt_check so that the next time we boot we won't go over these steps again
+mv dvt_check dvt_check.txt 2>>err.txt

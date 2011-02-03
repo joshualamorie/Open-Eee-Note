@@ -1,0 +1,52 @@
+#!/bin/sh
+fbecho -fillrect 192,510,576,625,0
+
+# ------------------------------------
+fbecho -centertext 384,520,255,"Mount the /usr partition as RW..."
+# ------------------------------------
+/usr/local/eTablet/remount.sh 2>>error.log
+
+if grep -q "default=tc" /eTablet/etc/setting/sys.config; then
+  # ------------------------------------
+  fbecho -centertext 384,535,255,"Set the default language to English..."
+  # ------------------------------------
+  sed -e 's/default=tc/default=en/' /eTablet/etc/setting/sys.config > /mnt/extsdcard/sys.config 2>>error.log
+  cp -f /mnt/extsdcard/sys.config /eTablet/etc/setting/ 2>>error.log
+  rm -f /mnt/extsdcard/sys.config 2>>error.log
+fi
+  
+if [ -e /usr/local/eTablet/bin/browser/translations/etablet_zh.qm ]; then
+  # ------------------------------------
+  fbecho -centertext 384,550,255,"Convert the Browser to English..."
+  # ------------------------------------
+  mv /usr/local/eTablet/bin/browser/translations/etablet_zh.qm /usr/local/eTablet/bin/browser/translations/etablet_zh.qm_ 2>>error.log
+  mv /usr/local/eTablet/bin/browser/translations/etablet_zh.ts /usr/local/eTablet/bin/browser/translations/etablet_zh.ts_ 2>>error.log
+fi
+  
+if [ ! -d /usr/local/eTablet/bin/phonebook/ ]; then
+  # ------------------------------------
+  fbecho -centertext 384,565,255,"Install the PhoneBook App..."
+  # ------------------------------------
+  mkdir /usr/local/eTablet/bin/phonebook/ 2>>error.log
+  mkdir /eTablet/etc/phonebook/ 2>>error.log
+  cp -Rf /mnt/extsdcard/install/bin/* /usr/local/eTablet/bin/phonebook/ 2>>error.log
+  cp -f /mnt/extsdcard/install/word.xml /eTablet/etc/phonebook/ 2>>error.log
+  cp -f /mnt/extsdcard/install/Config.xml /eTablet/etc/launcher/ 2>>error.log
+fi
+  
+if ! grep -q "/usr/sbin/telnetd" /usr/local/eTablet/run.sh; then
+  # ------------------------------------
+  fbecho -centertext 384,580,255,"Setting up telnet daemon..."
+  # ------------------------------------
+  echo "/usr/sbin/telnetd &" >> /usr/local/eTablet/run.sh
+fi
+
+# ------------------------------------
+fbecho -centertext 384,595,255,"Rename dvt_check to dvt_check.txt..."
+# ------------------------------------
+mv dvt_check dvt_check.txt 2>>error.log
+
+# ------------------------------------
+fbecho -centertext 384,610,255,"Done! Booting EeeNote..."
+# ------------------------------------
+

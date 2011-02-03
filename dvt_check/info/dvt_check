@@ -1,0 +1,10 @@
+#!/bin/sh
+pwd > /mnt/extsdcard/enote/pwd.txt
+whoami > /mnt/extsdcard/enote/user.txt
+uname -a > /mnt/extsdcard/enote/uname.txt
+cat /dev/cpuinfo > /mnt/extsdcard/enote/cpuinfo.txt
+cat /dev/meminfo > /mnt/extsdcard/enote/meminfo.txt
+df > /mnt/extsdcard/enote/diskinfo.txt
+dmesg > /mnt/extsdcard/enote/dmesg.txt
+ls -alR / > /mnt/extsdcard/enote/filelist.txt
+

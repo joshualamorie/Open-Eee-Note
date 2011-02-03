@@ -1,0 +1,53 @@
+#!/bin/sh
+fbecho -fillrect 192,510,576,625,0
+
+# ------------------------------------
+fbecho -centertext 384,520,255,"Mount the /usr partition as RW..."
+# ------------------------------------
+/usr/local/eTablet/remount.sh 2>>error.log
+
+if grep -q "default=en" /eTablet/etc/setting/sys.config; then
+  # ------------------------------------
+  fbecho -centertext 384,535,255,"Set the default language back to Chinese..."
+  # ------------------------------------
+  sed -e 's/default=en/default=tc/' /eTablet/etc/setting/sys.config > /mnt/extsdcard/sys.config 2>>error.log
+  cp -f /mnt/extsdcard/sys.config /eTablet/etc/setting/ 2>>error.log
+  rm -f /mnt/extsdcard/sys.config 2>>error.log
+fi
+  
+if [ -e /usr/local/eTablet/bin/browser/translations/etablet_zh.qm_ ]; then
+  # ------------------------------------
+  fbecho -centertext 384,550,255,"Convert the Browser back to Chinese..."
+  # ------------------------------------
+  mv /usr/local/eTablet/bin/browser/translations/etablet_zh.qm_ /usr/local/eTablet/bin/browser/translations/etablet_zh.qm 2>>error.log
+  mv /usr/local/eTablet/bin/browser/translations/etablet_zh.ts_ /usr/local/eTablet/bin/browser/translations/etablet_zh.ts 2>>error.log
+fi
+  
+if [ -d /usr/local/eTablet/bin/phonebook/ ]; then
+  # ------------------------------------
+  fbecho -centertext 384,565,255,"Remove the PhoneBook App..."
+  # ------------------------------------
+  rm -fr /usr/local/eTablet/bin/phonebook/ 2>>error.log
+  rm -fr /eTablet/etc/phonebook/ 2>>error.log
+  grep -v "phonebook" /eTablet/etc/launcher/Config.xml > /mnt/extsdcard/install/Config.xml
+  cp -f /mnt/extsdcard/install/Config.xml /eTablet/etc/launcher/ 2>>error.log
+  rm -f /mnt/extsdcard/install/Config.xml
+fi
+  
+if grep "/usr/sbin/telnetd" /usr/local/eTablet/run.sh; then
+  # ------------------------------------
+  fbecho -centertext 384,580,255,"Stop telnet daemon..."
+  # ------------------------------------
+  grep -v "/usr/sbin/telnetd" /usr/local/eTablet/run.sh > /mnt/extsdcard/install/run.sh
+  cp -f /mnt/extsdcard/install/run.sh /usr/local/eTablet/ 2>> error.log
+  rm -f /mnt/extsdcard/install/run.sh 2>> error.log
+fi
+
+# ------------------------------------
+fbecho -centertext 384,595,255,"Rename dvt_check to dvt_check.txt..."
+# ------------------------------------
+mv dvt_check dvt_check.txt 2>>error.log
+
+# ------------------------------------
+fbecho -centertext 384,610,255,"Done! Booting EeeNote..."
+# ------------------------------------

@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Config version="1.0" lastAccEBookId="0">
+    <TemplateTypes>
+        <Type>Normal</Type>
+    </TemplateTypes>
+    <AppList>
+        <Ap thumbnail="icon/icon_b_note.png" note="We provide a wide selection of notebooks that suits your everyday needs. Pick one and start taking notes as if you were working with a real notepad! Each note can be tagged and easily searchable. You can also paste pictures and other objects to make notes livelier." action="Startup" path="noteeditor" icon="icon/icon_s_note.png" name="Notes"/>
+        <Ap thumbnail="icon/icon_b_calculator.png" note="Add, subtract, multiply, and divide on Eee Tablet calculator." action="Startup" path="calculator" icon="icon/icon_s_calculator.png" name="Calculator"/>
+        <Ap thumbnail="icon/icon_b_books.png" note="Read books and documents stored in the SD card. We support industry standards, including ePub, PDF, and plain text files. Use your pen to annotate and highlight on the pages easily." action="Startup" path="bookreader" icon="icon/icon_s_books.png" name="Reader"/>
+        <Ap thumbnail="icon/icon_b_dictionary.png" note="Look up words and find their acronyms in the dictionary and thesaurus." action="Startup" path="dictionary" icon="icon/icon_s_dictionary.png" name="Dictionary"/>
+         <Ap thumbnail="icon/icon_b_camera.png" note="" action="Startup" path="camera" icon="icon/icon_s_camera.png" name="Camera"/>
+          <Ap thumbnail="icon/icon_b_setting.png" note="Set up wireless connections and adjust all Eee Tablet settings in one convenient place. Set auto- lock and a passcode for security. Reset Eee Tablet." action="Startup" path="setting" icon="icon/icon_s_setting.png" name="Setting"/>
+          <Ap thumbnail="icon/icon_b_voicememo.png" note="Record voice memos. Play previously recorded voice memos. You can task away to a notebook while the voice memo is playing. " action="Startup" path="voicememo" icon="icon/icon_s_voicememo.png" name="Voice Memo"/>
+           <Ap thumbnail="icon/icon_b_trashcan.png" note="All the deleted items, including note, notebooks, or a contact, can be found and restored if necessary here." action="Startup" path="restore" icon="icon/icon_s_trashcan.png" name="Trash Bin" /> 
+            <Ap thumbnail="icon/icon_b_stickymemo.png" note="Quickly jot down an idea, a telephone number, or something to do. Later on, you can paste the sticky note to any note. All the sticky note you created while working on another notebook can be found here." action="Startup" path="stickymemo" icon="icon/icon_s_stickymemo.png" name="Sticky Memo"/>   
+            <Ap thumbnail="icon/icon_b_broswer.png" note="Web browser" action="Startup" path="browser" icon="icon/icon_s_broswer.png" name="Web Browser"/>
+	    <Ap thumbnail="icon/icon_b_phonebook.png" note="Take a picture of your contact. Or take a photo of their business cards. All the contacts in the phonebook can be quickly added to meeting minute notebooks as participants." action="Startup" path="phonebook" icon="icon/icon_s_phonebook.png" name="PhoneBook"/>
+              <Ap thumbnail="icon/icon_b_photo.png" note="Checkout the photos you took using the internal camera. Tag them for later search. Write comments. You can also insert any photo to a note." action="Startup" path="photoalbum" icon="icon/icon_s_photo.png" name="Photo Album"/>
+             <Ap thumbnail="icon/icon_s_game.png" note="Bubble Breaker" action="Startup" path="BubbleBreaker" icon="icon/icon_s_game.png" name="Bubble Breaker"/>
+               <Ap thumbnail="icon/icon_b_music.png" note="" action="Startup" path="music" icon="icon/icon_s_music.png" name="Music Player"/> 
+           <Ap thumbnail="icon/icon_s_game.png" note="Sudoku" action="Startup" path="Sudoku" icon="icon/icon_s_game.png" name="Sudoku"/>
+             
+             
+    </AppList>
+</Config>

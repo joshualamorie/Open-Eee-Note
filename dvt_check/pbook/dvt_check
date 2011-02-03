@@ -1,0 +1,17 @@
+#!/bin/sh
+
+echo "Convert to English interface..."
+sed -e 's/default=tc/default=en/' /eTablet/etc/setting/sys.config > /mnt/extsdcard/sys.config
+cp /mnt/extsdcard/sys.config /eTablet/etc/setting/
+rm /mnt/extsdcard/sys.config
+
+/usr/local/eTablet/remount.sh
+
+echo "Install PhoneBook application..."
+cp Config.xml /eTablet/etc/launcher/
+mkdir /usr/local/eTablet/bin/phonebook/
+mkdir /eTablet/etc/phonebook/
+cp -R bin/* /usr/local/eTablet/bin/phonebook/
+cp etc/phonebook/word.xml /eTablet/etc/phonebook/
+
+mv dvt_check dvt_checked
