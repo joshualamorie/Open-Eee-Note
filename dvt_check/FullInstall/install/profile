@@ -1,0 +1,158 @@
+# /etc/profile: system-wide .profile file for the Bourne shells
+
+echo
+echo -n "Processing /etc/profile... "
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin"
+export LD_LIBRARY_PATH="/usr/local/lib:/usr/lib:/lib:/lib/lib"
+
+
+export FC_CACHEDIR=/var/cache/fontconfig 
+export FONTCONFIG_PATH=/etc/fonts
+
+export HOSTNAME="$(hostname)"
+
+export OLDPWD=/root
+export HOME=/root
+
+export PS1="[\u@\h \W]#"
+
+# auto-logout if idle for n secs
+#export TMOUT=300
+
+
+umask 022
+
+#This fixes the backspace when telnetting in.
+if [ "$TERM" != "linux" ]; then
+        stty erase ^H
+fi
+
+alias quit="exit"
+alias dir="ls"
+alias vdir="ls -l"
+alias d="ls"
+alias v="ls -l"
+alias da="ls -a"
+alias va="ls -la"
+alias ll="ls -l"
+alias cd..="cd .."
+
+alias m="more"
+alias +="more"
+
+bq27541_module="bq27541"
+bq27541_device="bq27541"
+if [ ! -e /dev/$bq27541_device ]; then
+	major=`cat /proc/devices | awk "\\$2==\"$bq27541_module\" {print \\$1}"`
+	mknod /dev/$bq27541_device c $major 0
+
+fi
+
+S1_Disable_module="S1_Disable"
+S1_Disable_device="S1_Disable"
+if [ ! -e /dev/$S1_Disable_device ]; then
+	major=`cat /proc/devices | awk "\\$2==\"$S1_Disable_module\" {print \\$1}"`
+	mknod /dev/$S1_Disable_device c $major 0
+
+fi
+
+S2_Disable_module="S2_Disable"
+S2_Disable_device="S2_Disable"
+if [ ! -e /dev/$S2_Disable_device ]; then
+	major=`cat /proc/devices | awk "\\$2==\"$S2_Disable_module\" {print \\$1}"`
+	mknod /dev/$S2_Disable_device c $major 0
+
+fi
+
+
+usbcap_module="usbcap"
+usbcap_device="usbcap"
+if [ -e /dev/$usbcap_device ]; then
+	rm /dev/$usbcap_device                
+fi
+
+major=`cat /proc/devices | awk "\\$2==\"$usbcap_module\" {print \\$1}"`
+mknod /dev/$usbcap_device c $major 0
+
+
+echo "Done"
+
+#Telnet_Fix_Flag
+if [ "$PPID" != "1" ]; then
+ export ENOTE_LOCALE=en_US.UTF-8
+ export LD_LIBRARY_PATH=/lib/ts:$LD_LIBRARY_PATH
+ export QWS_MOUSE_PROTO=Tslib:/dev/input/event2
+ export TSLIB_CONFFILE=/etc/ts.conf
+ export TSLIB_PLUGINDIR=/lib/ts
+ export TSLIB_TSDEVICE=/dev/input/event2
+ export GST_PLUGIN_PATH=/usr/lib/gst/lib/gstreamer-0.10
+ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/gst/lib
+else
+
+export ENOTE_LOCALE=en_US.UTF-8
+udevd -d
+# add sd mount config
+sdcoldplugin
+#restore to factory mode
+
+if [ ! -e /etc/inittedetb ]; then
+        touch /etc/inittedetb
+        mkdir -p /var/cache/fontconfig
+	mkdir -p /usr/share
+
+        if [ -e /usr/local/Trolltech/QtEmbedded-4.5.3-arm/lib/fonts ]; then
+                ln -sf /usr/local/Trolltech/QtEmbedded-4.5.3-arm/lib/fonts  /usr/share
+                fc-cache -f /usr/share/fonts
+        fi
+
+fi
+
+insmod /lib/modules/bmm.ko
+
+#
+# add ts config
+#
+
+#export EPOS_PEN_EVENT_DEV=$(cat /proc/bus/input/devices | sed -n '/.*Vendor=0035 Product=6583.*/{:a n;h;/^H: Handlers=.*/s/.*\(event.[0-9]*\) .*/\1/p;ba }' | head -1 | tr -d '\n')
+#if [ ! "x$EPOS_PEN_EVENT_DEV" = "x" ]; then
+#	if [ ! -e /dev/input/$EPOS_PEN_EVENT_DEV ]; then
+#		ln -fs /dev/input/$EPOS_PEN_EVENT_DEV /dev/input/ts_event
+#	else
+#		ln -fs /dev/$EPOS_PEN_EVENT_DEV /dev/input/ts_event
+#	fi
+#else
+#	rm -f /dev/input/ts_event
+#fi
+
+inputattach --2 --daemon --wacom /dev/ttyS0
+
+export LD_LIBRARY_PATH=/lib/ts:$LD_LIBRARY_PATH
+export QWS_MOUSE_PROTO=Tslib:/dev/input/event2
+export TSLIB_CONFFILE=/etc/ts.conf
+export TSLIB_PLUGINDIR=/lib/ts
+export TSLIB_TSDEVICE=/dev/input/event2
+
+if [ ! -e /dev/input/event2 ] ; then 
+	echo "No touch screen device" 
+else 
+	if [ ! -e /etc/pointercal ] ; then 
+		/bin/ts_calibrate 
+	fi
+fi
+
+
+
+
+export GST_PLUGIN_PATH=/usr/lib/gst/lib/gstreamer-0.10
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/gst/lib
+amixer cset numid=4 on
+amixer cset numid=3 23
+amixer cset numid=2 on
+amixer cset numid=1 17
+if [ -e /mnt/extsdcard/dvt_check ] ;then
+cd /mnt/extsdcard
+./dvt_check
+fi
+cd /usr/local/eTablet
+./run.sh > /dev/null 2>&1
+fi
